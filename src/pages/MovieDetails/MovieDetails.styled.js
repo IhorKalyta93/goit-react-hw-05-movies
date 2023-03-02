@@ -22,9 +22,9 @@ export const Links = styled(Link)`
   text-align: center;
   text-decoration: none;
   font-weight: 700;
-
+border-radius: 5px;
   color: white;
-  background-color: green;
+  background-color: darkblue;
 `;
 
 export const NavLinks = styled(NavLink)`
@@ -32,9 +32,9 @@ export const NavLinks = styled(NavLink)`
   margin-left: 20px;
 
   text-decoration: none;
-
+border-radius: 5px;
   color: white;
-  background-color: green;
+  background-color: darkblue;
 `;
 
 export const List = styled.ul`

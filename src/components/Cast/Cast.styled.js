@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const List = styled.ul`
-  padding: 30px;
+  padding: 20px;
 `;
 
 export const Image = styled.img`

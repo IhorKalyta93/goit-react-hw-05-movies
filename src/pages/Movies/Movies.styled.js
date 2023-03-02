@@ -33,9 +33,9 @@ export const SearchButton = styled.button`
 
 export const Btn = styled.button`
   padding: 10px 20px;
-
+  border-radius: 5px;
   color: white;
-  background-color: green;
+  background-color: darkblue;
   border: transparent;
   outline: transparent;
 `;

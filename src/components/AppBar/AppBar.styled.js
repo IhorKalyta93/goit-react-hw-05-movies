@@ -12,6 +12,7 @@ export const NavItem = styled(NavLink)`
   color: black;
 
   &.active {
-    color: green;
+    color: darkblue;
+    font-weight: 500;
   }
 `;
