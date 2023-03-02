@@ -5,7 +5,6 @@ export const Image = styled.img`
   width: 200px;
   height: 300px;
   margin: 20px;
-
   border-radius: 2px;
 `;
 
