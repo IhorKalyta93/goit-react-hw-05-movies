@@ -1,6 +1,7 @@
 import { useParams, Outlet, useLocation } from 'react-router-dom';
-import { detalisMovie } from 'API';
+import { detailsMovie } from 'API';
 import { useEffect, useState, Suspense } from 'react';
+// import { placeholderURL} from '../../utils/imageURL';
 import {
   Image,
   Information,
@@ -12,19 +13,20 @@ import {
 } from './MovieDetails.styled';
 
 const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
+const placeholderURL = "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
 
 const MovieDetails = () => {
-  const [detalis, setDetalis] = useState({});
+  const [details, setdetails] = useState(null);
   const { movieId } = useParams();
   const [genreList, setGenreList] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
-    detalisMovie(movieId)
-      .then(detalis => {
-        setDetalis(detalis);
+    detailsMovie(movieId)
+      .then(details => {
+        setdetails(details);
         const genreList = [];
-        detalis.genres.forEach(({ name }) => genreList.push(name));
+        details.genres.forEach(({ name }) => genreList.push(name));
         setGenreList(genreList);
       })
       .catch(error => {
@@ -32,29 +34,30 @@ const MovieDetails = () => {
       });
   }, [movieId]);
 
-  const releaseYear = new Date(detalis.release_date);
+  const releaseYear = new Date(details?.release_date);
   const back = location.state?.from ?? '/';
 
   return (
     <div>
       <NavLinks to={back}>Go back</NavLinks>
+      {details&&
       <Card>
         <Image
-          src={`${BASE_IMAGE_URL}${detalis.poster_path}`}
-          alt={detalis.title}
+          src={details.poster_path ? `${BASE_IMAGE_URL}${details?.poster_path}`:placeholderURL}
+          alt={details?.title}
           width="300"
         />
         <Information>
           <h2>
-            {detalis.title} ({releaseYear.getFullYear()})
+            {details.title} ({releaseYear.getFullYear()})
           </h2>
-          <p>User score: {detalis.vote_count} </p>
+          <p>User score: {details?.vote_count} </p>
           <h3>Overview</h3>
-          <p>{detalis.overview}</p>
+          <p>{details?.overview}</p>
           <h4>Genres</h4>
           <p>{genreList.join(', ')}</p>
         </Information>
-      </Card>
+      </Card>}
       <List>
         <p>Additional information</p>
         <Item>

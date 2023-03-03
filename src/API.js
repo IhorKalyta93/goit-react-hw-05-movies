@@ -17,12 +17,12 @@ export const searchMovie = async query => {
   return search.data;
 };
 
-export const detalisMovie = async id => {
-  const detalis = await axios.get(
+export const detailsMovie = async id => {
+  const details = await axios.get(
     `/movie/${id}?api_key=${API_KEY}&language=en-US`
   );
 
-  return detalis.data;
+  return details.data;
 };
 
 export const creditsMovie = async id => {
